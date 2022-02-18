@@ -1,0 +1,15 @@
+version: "3"
+services:
+  squid:
+    container_name: squid-proxy
+    build: .
+    environment:
+      - SCANNER_USERNAME=test_user
+      - SCANNER_PASSWORD=test_pass
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./conf/squid.conf:/etc/squid/squid.conf
+      - ./cache/squid:/var/spool/squid
+      - ./log/squid:/var/log/squid
+    restart: always
